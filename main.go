@@ -1,7 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+
+	"github.com/fasthttp/router"
+	"github.com/valyala/fasthttp"
+)
+
+func Index(ctx *fasthttp.RequestCtx) {
+	ctx.WriteString("Welcome!")
+}
+
+func Hello(ctx *fasthttp.RequestCtx) {
+	fmt.Fprintf(ctx, "Hello, %s!\n", ctx.UserValue("name"))
+}
 
 func main() {
-	fmt.Println("Tai é a linda!!!")
+	r := router.New()
+	r.GET("/", Index)
+	r.GET("/hello/{name}", Hello)
+
+	log.Fatal(fasthttp.ListenAndServe(":3000", r.Handler))
 }
