@@ -1,25 +1,19 @@
 package main
 
 import (
-	"fmt"
-	"log"
-
-	"github.com/fasthttp/router"
-	"github.com/valyala/fasthttp"
+    "github.com/gofiber/fiber/v2"
+    "github.com/gofiber/fiber/v2/middleware/logger"
 )
 
-func Index(ctx *fasthttp.RequestCtx) {
-	ctx.WriteString("Welcome!")
-}
-
-func Hello(ctx *fasthttp.RequestCtx) {
-	fmt.Fprintf(ctx, "Hello, %s!\n", ctx.UserValue("name"))
-}
-
 func main() {
-	r := router.New()
-	r.GET("/", Index)
-	r.GET("/hello/{name}", Hello)
+    app := fiber.New()
+    // Initialize default config
+    app.Use(logger.New())
 
-	log.Fatal(fasthttp.ListenAndServe(":3000", r.Handler))
+    app.Get("/", func(c *fiber.Ctx) error {
+        //log.Info("[/]: Hello world")
+        return c.Status(fiber.StatusOK).JSON(fiber.Map{"testing": "Hello, World!"})
+    })
+
+    app.Listen(":3000")
 }
