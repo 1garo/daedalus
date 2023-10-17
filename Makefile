@@ -12,3 +12,6 @@ testv: build
 
 lint:
 	@golangci-lint run
+
+tidy:
+	@go mod tidy

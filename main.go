@@ -94,9 +94,5 @@ func main() {
 		return c.JSON(fiber.Map{"data": input})
 	})
 
-	app.Get("/recipe", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{"data": "Alexandre"})
-	})
-
 	_ = app.Listen(":3000")
 }
