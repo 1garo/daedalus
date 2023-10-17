@@ -10,7 +10,7 @@ import (
 
 type (
 	ErrorResponse struct {
-		Tag         string `json:"description" validate:"required"`
+		Tag         string `json:"description"     validate:"required"`
 		FailedField string `json:"field,omitempty"`
 	}
 
@@ -44,9 +44,9 @@ func (v XValidator) Validate(data interface{}) []ErrorResponse {
 }
 
 type CreateRecipeInput struct {
-	ID          int                `json:"id" validate:"required"`
+	ID          int                `json:"id"          validate:"required"`
 	Ingredients []RecipeIngredient `json:"ingredients" validate:"required"`
-	Steps       []Step             `json:"steps" validate:"required"`
+	Steps       []Step             `json:"steps"       validate:"required"`
 }
 
 type RecipeIngredient struct {
