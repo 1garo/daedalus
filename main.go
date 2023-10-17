@@ -98,5 +98,5 @@ func main() {
 		return c.JSON(fiber.Map{"data": "Alexandre"})
 	})
 
-	app.Listen(":3000")
+	_ = app.Listen(":3000")
 }
