@@ -13,7 +13,7 @@ func main() {
 
 	host := env.GetEnv("APP_HOST", "localhost")
 	port := env.GetEnv("APP_PORT", "3000")
-	listen := fmt.Sprintf("%s:%s", host, port);
+	listen := fmt.Sprintf("%s:%s", host, port)
 
 	log.Fatal(app.Listen(listen))
 }

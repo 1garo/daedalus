@@ -13,8 +13,6 @@ import (
 	"github.com/1garo/daedalus/types"
 )
 
-
-
 func NewApplication() *fiber.App {
 	env.SetupEnvFile()
 	//database.SetupDatabase()
@@ -30,8 +28,8 @@ func NewApplication() *fiber.App {
 	}
 
 	app.Use(func(c *fiber.Ctx) error {
-	  c.Locals("validator", myValidator)
-	  return c.Next()
+		c.Locals("validator", myValidator)
+		return c.Next()
 	})
 
 	app.Get("/dashboard", monitor.New())
@@ -43,4 +41,3 @@ func NewApplication() *fiber.App {
 
 	return app
 }
-
